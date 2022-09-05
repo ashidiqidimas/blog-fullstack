@@ -2,9 +2,11 @@ import AuthInput from "../components/AuthInput";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
+import {useCookies} from "react-cookie";
 
 export default function LoginPage() {
   const [values, setValues] = useState();
+  const [_, setCookies] = useCookies(["accessToken"]);
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
@@ -16,8 +18,10 @@ export default function LoginPage() {
     e.preventDefault();
     console.log(values);
     axios
-      .post("http://localhost:8000/user/register", values)
+      .post("http://localhost:8000/auth/login", values)
       .then((res) => {
+        const { accessToken } = res.data;
+        setCookies("accessToken", accessToken, { maxAge: 60000 });
         navigate("/");
       })
       .catch((err) => alert("Error with " + err));
@@ -34,9 +38,11 @@ export default function LoginPage() {
             Log In to Continue
           </p>
           <form onSubmit={handleSubmit} className={"flex flex-col gap-y-4 mt-4"}>
-            <AuthInput label={"Email"} type={"email"} placeholder={"example@mail.com"} name={"email"}
+            <AuthInput label={"Email"} type={"email"} placeholder={"example@mail.com"}
+                       name={"email"}
                        onChange={handleOnChange} />
-            <AuthInput label={"Password"} type={"password"} placeholder={"password"} name={"password"}
+            <AuthInput label={"Password"} type={"password"} placeholder={"password"}
+                       name={"password"}
                        onChange={handleOnChange} />
             <div className={"mt-4"}>
               <button
@@ -48,8 +54,8 @@ export default function LoginPage() {
             </div>
           </form>
           <div className={"text-primary-text mt-2"}>
-            Don't an account? <Link to={"/login"}><span
-            className={"text-sky-600 underline font-bold"}>Log In</span></Link>
+            Don't an account? <Link to={"/register"}><span
+            className={"text-sky-600 underline font-bold"}>Register</span></Link>
           </div>
         </div>
       </div>
