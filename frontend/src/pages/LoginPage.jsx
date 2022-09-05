@@ -6,7 +6,7 @@ import {useCookies} from "react-cookie";
 
 export default function LoginPage() {
   const [values, setValues] = useState();
-  const [_, setCookies] = useCookies(["accessToken"]);
+  const [_, setCookies] = useCookies(["accessToken", "fullname"]);
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
@@ -16,12 +16,12 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
     axios
       .post("http://localhost:8000/auth/login", values)
       .then((res) => {
-        const { accessToken } = res.data;
+        const { accessToken, fullname } = res.data;
         setCookies("accessToken", accessToken, { maxAge: 60000 });
+        setCookies("fullname", fullname, { maxAge: 60000 });
         navigate("/");
       })
       .catch((err) => alert("Error with " + err));

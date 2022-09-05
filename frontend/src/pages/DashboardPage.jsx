@@ -1,6 +1,6 @@
 export default function DashboardPage() {
   return (
-    <div>
+    <div className={"bg-white h-screen flex justify-center items-center"}>
       Dashboard
     </div>
   );
