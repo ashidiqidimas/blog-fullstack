@@ -2,6 +2,7 @@ import AuthInput from "../components/AuthInput";
 import {Link} from "react-router-dom";
 
 export default function RegisterPage() {
+
   return (
     <div className={"lg:container flex h-screen py-14"}>
       <div className={"flex basis-1/2"}>
