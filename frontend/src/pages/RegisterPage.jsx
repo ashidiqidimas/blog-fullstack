@@ -1,7 +1,27 @@
 import AuthInput from "../components/AuthInput";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
 
 export default function RegisterPage() {
+  const [values, setValues] = useState();
+  const navigate = useNavigate();
+
+  const handleOnChange = (e) => {
+    console.log(values);
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
+    axios
+      .post("http://localhost:8000/user/register", values)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert("Error with " + err));
+  };
 
   return (
     <div className={"lg:container flex h-screen py-14"}>
@@ -14,10 +34,13 @@ export default function RegisterPage() {
             To Continue,<br />
             You Must Register First
           </p>
-          <form className={"flex flex-col gap-y-4 mt-4"}>
-            <AuthInput label={"Full Name"} placeholder={"your name"} name={"fullname"} />
-            <AuthInput label={"Email"} placeholder={"email"} name={"email"} />
-            <AuthInput label={"Password"} placeholder={"password"} name={"password"} />
+          <form onSubmit={handleSubmit} className={"flex flex-col gap-y-4 mt-4"}>
+            <AuthInput label={"Full Name"} type={"text"} placeholder={"your name"} name={"fullname"}
+                       onChange={handleOnChange} />
+            <AuthInput label={"Email"} type={"email"} placeholder={"email"} name={"email"}
+                       onChange={handleOnChange} />
+            <AuthInput label={"Password"} type={"password"} placeholder={"password"}
+                       name={"password"} onChange={handleOnChange} />
             <div className={"mt-4"}>
               <button
                 type={"submit"}
@@ -28,7 +51,8 @@ export default function RegisterPage() {
             </div>
           </form>
           <div className={"text-primary-text mt-2"}>
-            Already have an account? <Link to={"/login"}><span className={"text-sky-600 underline font-bold"}>Log In</span></Link>
+            Already have an account? <Link to={"/login"}><span
+            className={"text-sky-600 underline font-bold"}>Log In</span></Link>
           </div>
         </div>
       </div>
