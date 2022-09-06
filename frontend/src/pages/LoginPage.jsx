@@ -10,7 +10,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    console.log(values);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

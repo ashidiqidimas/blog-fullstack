@@ -1,6 +1,6 @@
 export default function EditPostPage() {
   return (
-    <div>
+    <div className={"flex justify-center items-center bg-white"}>
       Edit
     </div>
   );

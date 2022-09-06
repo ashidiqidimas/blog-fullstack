@@ -9,15 +9,10 @@ export default function DashboardPage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [cookies, setCookies, removeCookies] = useCookies(["accessToken", "fullname", "userId"]);
-  //
-  // useEffect(() => {
-  //   if (!)
-  // }, []);
-
 
   const fetchPosts = () => {
     axios
-      .get("http://localhost:8000/post/")
+      .get(`http://localhost:8000/post/user/${cookies.userId}`)
       .then((res) => {
         const listPosts = res.data;
         setPosts(listPosts);
@@ -26,11 +21,15 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
-    fetchPosts();
+    if (!cookies.userId) {
+      navigate("/register");
+    } else {
+      fetchPosts();
+    }
   }, []);
 
   const handleClick = (id) => {
-    navigate(`/blogs/${id}`);
+    navigate(`/blogs/edit/${id}`);
   };
 
   const handleLogOut = () => {
@@ -41,7 +40,7 @@ export default function DashboardPage() {
   };
 
   const handleCreatePost = () => {
-    // TODO
+    navigate("/blogs/create");
   };
 
   return (
@@ -64,26 +63,17 @@ export default function DashboardPage() {
           <p>Posts is still empty :(</p>
           :
           <>
-            <FirstPost
-              photoURL={posts[0].photo_URL}
-              createdAt={posts[0].createdAt}
-              postTitle={posts[0].post_title}
-              postBody={posts[0].post_body}
-              onClick={() => handleClick(posts[0].post_id)}
-            />
             <div className={"mt-8 flex flex-wrap"}>
-              {posts.map((post, index) => (
-                index !== 0 ?
-                  <SecondPost
-                    key={post.post_id}
-                    photoURL={post.photo_URL}
-                    createdAt={post.createdAt}
-                    postTitle={post.post_title}
-                    postBody={post.post_body}
-                    onClick={() => handleClick(post.post_id)}
-                  />
-                  :
-                  ""
+              {posts.map((post) => (
+                <SecondPost
+                  key={post.post_id}
+                  photoURL={post.photo_URL}
+                  createdAt={post.createdAt}
+                  postTitle={post.post_title}
+                  postBody={post.post_body}
+                  onClick={() => handleClick(post.post_id)}
+                  onEdit={() => navigate(`/blogs/edit/${post.post_id}`)}
+                />
               ))}
             </div>
             )}
