@@ -6,11 +6,10 @@ import {useCookies} from "react-cookie";
 
 export default function LoginPage() {
   const [values, setValues] = useState();
-  const [_, setCookies] = useCookies(["accessToken", "fullname"]);
+  const [_, setCookies] = useCookies(["accessToken", "fullname", "userId"]);
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    console.log(values);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -19,9 +18,10 @@ export default function LoginPage() {
     axios
       .post("http://localhost:8000/auth/login", values)
       .then((res) => {
-        const { accessToken, fullname } = res.data;
+        const { accessToken, fullname, userId } = res.data;
         setCookies("accessToken", accessToken, { maxAge: 60000 });
         setCookies("fullname", fullname, { maxAge: 60000 });
+        setCookies("userId", userId, { maxAge: 60000 });
         navigate("/");
       })
       .catch((err) => alert("Error with " + err));
@@ -49,7 +49,7 @@ export default function LoginPage() {
                 type={"submit"}
                 className={"w-full bg-sky-600 py-3 rounded-lg text-primary-text text-lg font-bold"}
               >
-                Register
+                Log In
               </button>
             </div>
           </form>
