@@ -29,7 +29,7 @@ export default function DashboardPage() {
   }, []);
 
   const handleClick = (id) => {
-    navigate(`/blogs/edit/${id}`);
+    navigate(`/blogs/${id}`);
   };
 
   const handleLogOut = () => {
