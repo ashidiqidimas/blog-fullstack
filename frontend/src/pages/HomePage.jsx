@@ -40,7 +40,7 @@ export default function HomePage() {
               postBody={posts[0].post_body}
               onClick={() => handleClick(posts[0].post_id)}
             />
-            <div className={"mt-16 flex flex-wrap"}>
+            <div className={"mt-8 flex flex-wrap"}>
               {posts.map((post, index) => (
                 index !== 0 ?
                   <SecondPost

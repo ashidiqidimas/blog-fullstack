@@ -3,7 +3,7 @@ export default function SecondPost({ photoURL, createdAt, postTitle, postBody, o
   const localizedDate = new Date(createdAt).toLocaleDateString("id-ID", options)
 
   return (
-    <div className={"flex flex-col basis-1/3 gap-y-4 px-6 py-8 cursor-pointer"} onClick={onClick}>
+    <div className={"flex flex-col basis-1/3 gap-y-4 pr-16 py-8 cursor-pointer"} onClick={onClick}>
       <img
         src={photoURL}
         alt=""
