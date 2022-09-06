@@ -22,7 +22,7 @@ const login = async (email, password) => {
         process.env.JWT_SECRET_PASSWORD,
         { expiresIn: "7d" },
       );
-      resolve({ accessToken: token, fullname: existingUser.fullname});
+      resolve({ accessToken: token, fullname: existingUser.fullname, userId: existingUser.user_id});
     } else {
       const wrongPasswordError = new Error("Email or password is wrong");
       wrongPasswordError.code = 401;
