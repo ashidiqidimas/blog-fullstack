@@ -43,7 +43,10 @@ export default function CreatePostPage() {
 
   return (
     <div className={"lg:container pt-14 px-5 "}>
-      <div className={"flex justify-center items-center bg-base mt-8 px-8 py-12 rounded-xl"}>
+      <div className={"flex flex-col bg-base mt-8 px-8 py-12 rounded-xl gap-y-8"}>
+        <button onClick={() => navigate(-1)}>
+          <img src="/back-icon.png" alt="" className={"h-10"} />
+        </button>
         <form onSubmit={handleSubmit} className={"w-full flex flex-col gap-y-8"}>
           <div className={"w-full"}>
             <label className={"text-secondary-text"}>Post Title</label>
