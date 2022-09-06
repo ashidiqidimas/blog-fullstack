@@ -13,7 +13,6 @@ export default function HomePage() {
       .get("http://localhost:8000/post/")
       .then((res) => {
         const listPosts = res.data;
-        console.log(listPosts[0].post_body);
         setPosts(listPosts);
       })
       .catch((e) => alert("error with " + e));
@@ -45,6 +44,7 @@ export default function HomePage() {
               {posts.map((post, index) => (
                 index !== 0 ?
                   <SecondPost
+                    key={post.post_id}
                     photoURL={post.photo_URL}
                     createdAt={post.createdAt}
                     postTitle={post.post_title}
