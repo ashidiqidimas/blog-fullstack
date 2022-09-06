@@ -11,11 +11,12 @@ const verifyToken = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     const userId = await jwt.verify(token, process.env.JWT_SECRET_PASSWORD);
+    console.log(userId);
     req.auth = userId;
     next();
   } catch (e) {
     e.code = 401
-    return res.status(401).json(e);
+    return res.status(e.code).json(e);
   }
 };
 
