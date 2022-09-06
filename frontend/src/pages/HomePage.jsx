@@ -50,6 +50,7 @@ export default function HomePage() {
                     postTitle={post.post_title}
                     postBody={post.post_body}
                     onClick={() => handleClick(post.post_id)}
+                    handleEdit={undefined}
                   />
                   :
                   ""
