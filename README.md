@@ -22,4 +22,4 @@ npm start
 ```
 
 ## Documentation
-For API reference, open http://localhost:8000/api-docs/ 
+For API reference, visit http://localhost:8000/api-docs/ 
