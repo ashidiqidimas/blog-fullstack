@@ -36,7 +36,7 @@ const verifyToken = require("../middleware/verifyToken");
  *                  example: superStrongPassword
  *      responses:
  *        '200':
- *          description: Login success
+ *          description: Register success
  *          content:
  *            application/json:
  *              schema:

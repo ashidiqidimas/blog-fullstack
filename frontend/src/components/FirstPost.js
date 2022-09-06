@@ -1,4 +1,4 @@
-export default function FirstPost(photoURL, createdAt, postTitle, postBody, onClick) {
+export default function FirstPost({ photoURL, createdAt, postTitle, postBody, onClick }) {
   return (
     <div className={"flex gap-x-8"} onClick={onClick}>
       <div className={"basis-2/3"}>

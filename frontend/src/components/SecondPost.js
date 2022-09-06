@@ -1,4 +1,4 @@
-export default function SecondPost(photoURL, createdAt, postTitle, postBody, onClick) {
+export default function SecondPost({ photoURL, createdAt, postTitle, postBody, onClick }) {
   return (
     <div className={"flex flex-col basis-1/3 gap-y-4 px-6 py-8"} onClick={onClick}>
       <img

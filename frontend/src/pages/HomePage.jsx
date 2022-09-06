@@ -13,6 +13,7 @@ export default function HomePage() {
       .get("http://localhost:8000/post/")
       .then((res) => {
         const listPosts = res.data;
+        console.log(listPosts[0].post_body);
         setPosts(listPosts);
       })
       .catch((e) => alert("error with " + e));
@@ -41,14 +42,17 @@ export default function HomePage() {
               onClick={() => handleClick(posts[0].post_id)}
             />
             <div className={"mt-16 flex flex-wrap"}>
-              {posts.map((post) => (
-                <SecondPost
-                  photoURL={post.photo_URL}
-                  createdAt={post.createdAt}
-                  postTitle={post.post_title}
-                  postBody={post.post_body}
-                  onClick={() => handleClick(post.post_id)}
-                />
+              {posts.map((post, index) => (
+                index !== 0 ?
+                  <SecondPost
+                    photoURL={post.photo_URL}
+                    createdAt={post.createdAt}
+                    postTitle={post.post_title}
+                    postBody={post.post_body}
+                    onClick={() => handleClick(post.post_id)}
+                  />
+                  :
+                  ""
               ))}
             </div>
             )}

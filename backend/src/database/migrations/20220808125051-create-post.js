@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       post_body: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       photo_URL: {
         type: Sequelize.STRING
