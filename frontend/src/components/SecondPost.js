@@ -1,4 +1,11 @@
-export default function SecondPost({ photoURL, createdAt, postTitle, postBody, onClick, handleEdit }) {
+export default function SecondPost({
+                                     photoURL,
+                                     createdAt,
+                                     postTitle,
+                                     postBody,
+                                     onClick,
+                                     editHandler,
+                                   }) {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const localizedDate = new Date(createdAt).toLocaleDateString("id-ID", options);
 
@@ -7,7 +14,7 @@ export default function SecondPost({ photoURL, createdAt, postTitle, postBody, o
       <div
         className={"cursor-pointer flex flex-col gap-y-4 "}
         onClick={onClick}
-        handleEdit={handleEdit}>
+      >
         <img
           src={photoURL}
           alt=""
@@ -20,10 +27,10 @@ export default function SecondPost({ photoURL, createdAt, postTitle, postBody, o
         </p>
       </div>
       {
-        handleEdit ?
+        editHandler ?
           <div className={"flex justify-end"}>
             <button
-              onClick={handleEdit}
+              onClick={editHandler}
               className={"flex z-50 gap-x-2 px-4 py-2 border border-sky-600 rounded-lg leading-6 font-medium text-sky-600"}
             >
               <img src="/edit-post-icon.png" alt="" className={"h-6"} />

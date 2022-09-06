@@ -72,7 +72,7 @@ export default function DashboardPage() {
                   postTitle={post.post_title}
                   postBody={post.post_body}
                   onClick={() => handleClick(post.post_id)}
-                  handleEdit={() => navigate(`/blogs/edit/${post.post_id}`)}
+                  editHandler={() => navigate(`/blogs/edit/${post.post_id}`)}
                 />
               ))}
             </div>
