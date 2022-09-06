@@ -18,7 +18,8 @@ export default function RegisterPage() {
     axios
       .post("http://localhost:8000/user/register", values)
       .then((res) => {
-        navigate("/");
+        alert("Register success. Please log in with your credential that you entered before")
+        navigate("/login");
       })
       .catch((err) => alert("Error with " + err));
   };
